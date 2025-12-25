@@ -5,16 +5,7 @@ import requests
 import json
 from io import BytesIO
 
-# 嘗試匯入 reportlab，如果失敗則使用備用方案
-try:
-    from reportlab.lib.pagesizes import letter, A4
-    from reportlab.lib import colors
-    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
-    from reportlab.lib.units import inch
-    HAS_REPORTLAB = True
-except ImportError:
-    HAS_REPORTLAB = False
+# reportlab 已移除
 
 # --- 1. 配置與中英對照表 ---
 PROCESS_TRANSLATIONS = {
@@ -197,91 +188,8 @@ def format_price(value):
     except:
         return "-"
 
-def html_to_pdf_reportlab(data, part_no):
-    """使用 reportlab 生成 PDF 報告"""
-    if not HAS_REPORTLAB:
-        return None
-    
-    try:
-        buffer = BytesIO()
-        doc = SimpleDocTemplate(buffer, pagesize=A4)
-        elements = []
-        
-        # 標題
-        styles = getSampleStyleSheet()
-        title_style = ParagraphStyle(
-            'CustomTitle',
-            parent=styles['Heading1'],
-            fontSize=16,
-            textColor=colors.black,
-            spaceAfter=20,
-            alignment=1  # 置中
-        )
-        elements.append(Paragraph(f"成本分析| {part_no}", title_style))
-        elements.append(Spacer(1, 0.3*inch))
-        
-        # 現況表格
-        current_data = [
-            ["項目", "數量", "百分比", f"成本 ({data['currency']})"],
-            ["總投入數量", str(data['c_total_qty']), "-", str(data['c_total_input_cost'])],
-            ["良品數量", str(data['c_good_qty']), str(data['c_good_rate']) + "%", "-"],
-            ["廢品數量", str(data['c_def_qty']), str(data['c_def_rate']) + "%", "-"],
-            ["加工成本", "-", str(data.get('c_proc_pct', '-')) + "%", str(data['c_proc_cost'])],
-            ["總成本", "-", "-", str(data['c_total_cost'])],
-            ["單顆成本", "-", "-", str(data['c_unit_cost'])],
-            ["目前售價", "-", "-", str(data['c_price'])],
-        ]
-        
-        current_table = Table(current_data)
-        current_table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 10),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black),
-        ]))
-        
-        elements.append(Paragraph("現況：成本分析 | Current Situation: Cost Analysis", styles['Heading2']))
-        elements.append(current_table)
-        elements.append(Spacer(1, 0.5*inch))
-        
-        # 評估表格
-        eval_data = [
-            ["項目", "數量", "百分比", f"成本 ({data['currency']})"],
-            ["總投入數量", str(data['e_total_qty']), "-", str(data['e_total_input_cost'])],
-            ["良品數量", str(data['e_good_qty']), str(data['e_good_rate']) + "%", "-"],
-            ["廢品數量", str(data['e_def_qty']), str(data['e_def_rate']) + "%", "-"],
-            ["加工成本", "-", str(data.get('e_proc_pct', '-')) + "%", str(data['e_proc_cost'])],
-            ["總成本", "-", "-", str(data['e_total_cost'])],
-            ["單顆成本", "-", "-", str(data['e_unit_cost'])],
-            ["建議售價", "-", "-", str(data['e_suggest_price'])],
-        ]
-        
-        eval_table = Table(eval_data)
-        eval_table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 10),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('BACKGROUND', (0, 1), (-1, -1), colors.lightblue),
-            ('GRID', (0, 0), (-1, -1), 1, colors.black),
-        ]))
-        
-        elements.append(Paragraph("評估：報價 | Evaluation: Quotation", styles['Heading2']))
-        elements.append(eval_table)
-        
-        # 生成 PDF
-        doc.build(elements)
-        buffer.seek(0)
-        return buffer.getvalue()
-    except Exception as e:
-        print(f"PDF 轉換失敗：{str(e)}")
-        return None
+
+# PDF 函數已移除
 
 # --- 3. HTML 模板生成 ---
 def generate_html(data):
@@ -655,18 +563,7 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
     st.components.v1.html(final_html, height=600, scrolling=True)
     
     # 下載選項
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        # HTML 下載
-        b64 = base64.b64encode(final_html.encode()).decode()
-        href = f'<a href="data:text/html;base64,{b64}" download="Analysis_{part_no}.html">📄 下載 HTML</a>'
-        st.markdown(href, unsafe_allow_html=True)
-    
-    with col2:
-        # PDF 下載
-        pdf_data = html_to_pdf_reportlab(display_data, part_no)
-        if pdf_data:
-            b64_pdf = base64.b64encode(pdf_data).decode()
-            href_pdf = f'<a href="data:application/pdf;base64,{b64_pdf}" download="Analysis_{part_no}.pdf">📕 下載 PDF</a>'
-            st.markdown(href_pdf, unsafe_allow_html=True)
+    # HTML 下載
+    b64 = base64.b64encode(final_html.encode()).decode()
+    href = f'<a href="data:text/html;base64,{b64}" download="Analysis_{part_no}.html">📄 下載 HTML</a>'
+    st.markdown(href, unsafe_allow_html=True)
