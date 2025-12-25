@@ -26,7 +26,7 @@
 $ cd /Users/grace/Desktop/成本分析
 $ git add .
 $ git commit -m "Cost Analysis App v1.0"
-$ git remote add origin https://github.com/你的用戶名/cost-analysis-app.git
+$ git remote add origin https://github.com/shihrx02-create/cost-analysis.git
 $ git branch -M main
 $ git push -u origin main
 
