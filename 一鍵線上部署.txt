@@ -1,0 +1,169 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║     🚀 一鍵線上部署！5 分鐘讓全公司使用你的應用               ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+【第 1 步】建立 GitHub 帳號（3 分鐘）
+
+1️⃣ 打開瀏覽器，訪問：https://github.com/signup
+
+2️⃣ 填寫：
+   - Email：你的公司郵箱
+   - Password：設定密碼（牢記！）
+   - Username：輸入用戶名（例如：grace-company）
+
+3️⃣ 驗證郵箱後，GitHub 帳號完成！
+
+✅ 記住你的用戶名：_________________ （寫下來）
+
+═══════════════════════════════════════════════════════════════
+
+【第 2 步】建立 Repository（2 分鐘）
+
+1️⃣ 登入 GitHub：https://github.com
+
+2️⃣ 點擊右上角 **+** 選擇 **New repository**
+
+3️⃣ 填寫資訊：
+   - Repository name: cost-analysis
+   - Description: 成本分析系統
+   - Public 勾選（重要！）
+   
+4️⃣ 按 **Create repository** 按鈕
+
+✅ Repository 已建立！你的 URL：
+   https://github.com/[你的用戶名]/cost-analysis
+
+═══════════════════════════════════════════════════════════════
+
+【第 3 步】上傳代碼到 GitHub（5 分鐘）
+
+⏱️ 打開終端，複製貼上以下命令：
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+cd /Users/grace/Desktop/成本分析
+
+git config --global user.name "你的名字"
+git config --global user.email "你的GitHub郵箱"
+
+git add .
+
+git commit -m "上傳成本分析應用"
+
+git remote add origin https://github.com/[你的用戶名]/cost-analysis.git
+
+git branch -M main
+
+git push -u origin main
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 提示：
+   - [你的用戶名] 改成你在第 1 步設定的用戶名
+   - 貼上後，可能要求輸入 GitHub 密碼或授權
+   - 看到 "main -> main" 表示上傳成功！
+
+✅ 代碼已上傳到 GitHub！
+
+═══════════════════════════════════════════════════════════════
+
+【第 4 步】部署到 Streamlit Cloud（2 分鐘）
+
+1️⃣ 訪問：https://streamlit.io/cloud
+
+2️⃣ 按 **Sign up** 然後選 **Sign up with GitHub**
+
+3️⃣ 授權 Streamlit 訪問 GitHub（允許）
+
+4️⃣ 完成註冊後，按 **New app**
+
+5️⃣ 填寫以下資訊：
+   
+   Repository: [你的用戶名]/cost-analysis
+   
+   Branch: main
+   
+   Main file path: app.py
+
+6️⃣ 按 **Deploy** 按鈕
+
+⏳ 等待 2-3 分鐘...
+
+✅ 你的應用上線了！
+
+你會看到一個 URL：
+   https://cost-analysis-xxxxx.streamlit.app
+
+═══════════════════════════════════════════════════════════════
+
+【完成！】分享給員工
+
+複製這個連結分享給全公司：
+
+   https://cost-analysis-xxxxx.streamlit.app
+
+員工可以直接在瀏覽器訪問，無需：
+   ❌ 安裝 Python
+   ❌ 安裝依賴
+   ❌ 複雜設定
+   ✅ 只需一個連結！
+
+═══════════════════════════════════════════════════════════════
+
+【如何更新應用】
+
+如果你修改了代碼，只需在終端執行：
+
+   cd /Users/grace/Desktop/成本分析
+   git add .
+   git commit -m "更新內容說明"
+   git push origin main
+
+1-2 分鐘後，Streamlit Cloud 會自動重新部署！
+
+═══════════════════════════════════════════════════════════════
+
+【常見問題】
+
+Q: 需要付費嗎？
+A: 完全免費！Streamlit Cloud 免費計畫足夠使用
+
+Q: 公司網路可以訪問嗎？
+A: 可以，只要能訪問 streamlit.app 就行
+  （某些公司網路可能有限制，聯絡 IT 部門）
+
+Q: 員工的 XLSX 檔案安全嗎？
+A: 上傳的檔案只存在於該會話，不會保存
+  （Streamlit Cloud 不會保存上傳的檔案）
+
+Q: 翻譯功能會工作嗎？
+A: 會的！線上環境有網路連線
+
+Q: 多少人可以同時使用？
+A: 無限人數，但免費計畫有計算資源限制
+  （通常足夠 20+ 人同時使用）
+
+═══════════════════════════════════════════════════════════════
+
+【需要幫助？】
+
+步驟卡住？
+
+1. GitHub 部署詳細指南：GITHUB_DEPLOYMENT.md
+2. 應用使用說明：使用說明.md
+3. Streamlit Cloud 文檔：https://docs.streamlit.io/streamlit-cloud
+
+═══════════════════════════════════════════════════════════════
+
+🎉 完成！你現在有一個線上應用！
+
+📱 分享連結：https://cost-analysis-xxxxx.streamlit.app
+👥 全公司使用：無需任何安裝
+🔄 自動更新：修改代碼自動部署
+💰 完全免費：沒有隱藏費用
+
+準備好了嗎？開始第 1 步吧！ 🚀
+
+═══════════════════════════════════════════════════════════════

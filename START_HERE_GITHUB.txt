@@ -1,0 +1,118 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║           👈 從這裡開始！免費線上部署（5 分鐘）              ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+你好！Grace！👋
+
+無需公司伺服器，直接在線上部署你的應用！
+
+✨ 所有步驟都在「一鍵線上部署.txt」文件中
+
+═══════════════════════════════════════════════════════════════
+
+🚀 超快速版本（只需看這個）
+
+如果你想要最簡單的方式，按照以下 4 步：
+
+【步驟 1】建立 GitHub 帳號
+  訪問：https://github.com/signup
+  輸入：email、密碼、用戶名
+  確認郵箱後完成
+
+【步驟 2】建立 Repository
+  登入 GitHub
+  按 + → New repository
+  名稱：cost-analysis
+  選擇：Public
+  創建！
+
+【步驟 3】推送代碼（在終端執行）
+  
+  cd /Users/grace/Desktop/成本分析
+  
+  git config --global user.name "你的名字"
+  git config --global user.email "你的GitHub郵箱"
+  
+  git add .
+  git commit -m "上傳應用"
+  git remote add origin https://github.com/[用戶名]/cost-analysis.git
+  git branch -M main
+  git push -u origin main
+
+【步驟 4】部署到 Streamlit Cloud
+  
+  訪問：https://streamlit.io/cloud
+  Sign up with GitHub
+  New app
+  選擇：cost-analysis repository
+  Main file: app.py
+  Deploy！
+
+⏳ 等待 2-3 分鐘...
+
+✅ 完成！你的應用線上了！
+
+═══════════════════════════════════════════════════════════════
+
+📋 詳細步驟
+
+打開「一鍵線上部署.txt」看完整的逐步指南
+
+═══════════════════════════════════════════════════════════════
+
+❓ 我卡住了
+
+別擔心！常見問題：
+
+Q: 不知道自己的 GitHub 用戶名
+A: 登入 GitHub，右上角頭像點下去
+
+Q: 終端提示「authentication failed」
+A: GitHub 可能要求輸入 token
+  → 訪問：https://github.com/settings/tokens/new
+  → 建立一個 token（勾選 repo）
+  → 在終端貼上
+
+Q: Streamlit Cloud 找不到我的 repository
+A: 確保 repository 是 Public 的
+  → GitHub → Settings → Change visibility → Public
+
+Q: 多久後能訪問？
+A: 2-3 分鐘，Streamlit Cloud 在建立環境
+
+═══════════════════════════════════════════════════════════════
+
+🎯 最終產品
+
+部署完成後，你會得到一個 URL：
+
+  https://cost-analysis-xxxxx.streamlit.app
+
+分享給全公司！員工無需：
+  ❌ 安裝 Python
+  ❌ 下載代碼
+  ❌ 複雜設定
+  ✅ 只需一個連結！
+
+═══════════════════════════════════════════════════════════════
+
+🔄 日後如何更新
+
+修改了代碼？只需：
+
+  cd /Users/grace/Desktop/成本分析
+  git add .
+  git commit -m "說明你的改變"
+  git push origin main
+
+1-2 分鐘後自動更新！
+
+═══════════════════════════════════════════════════════════════
+
+準備好了嗎？🚀
+
+打開「一鍵線上部署.txt」，跟著步驟做，5 分鐘完成！
+
+═══════════════════════════════════════════════════════════════

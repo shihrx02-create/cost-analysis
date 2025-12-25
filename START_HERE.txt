@@ -1,0 +1,106 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║           🚀 立即開始 - 只需 3 步（5 分鐘）                   ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+
+✅ 一切準備就緒！
+
+
+📍 你現在的位置：
+   /Users/grace/Desktop/成本分析/
+
+✅ 已完成：
+   • app.py (應用程式)
+   • 所有依賴已列出
+   • Git 已初始化
+   • 所有配置已完成
+
+
+═══════════════════════════════════════════════════════════════════
+
+🎯 現在只需 3 步
+═══════════════════════════════════════════════════════════════════
+
+
+🔵 步驟 1：建立 GitHub Repository
+
+1. 打開瀏覽器
+2. 訪問 https://github.com
+3. 登入（沒帳號先註冊）
+4. 點擊右上角 + → New repository
+5. Repository name: cost-analysis-app
+6. 選擇 Public
+7. Create repository
+8. 複製 URL（類似：https://github.com/你的用戶名/cost-analysis-app.git）
+
+
+🔵 步驟 2：推送代碼
+
+打開 Mac 終端，複製以下命令（一行一行執行）：
+
+cd /Users/grace/Desktop/成本分析
+
+git add .
+
+git commit -m "Cost Analysis App v1.0"
+
+git remote add origin 替換成你的Repository_URL
+
+git branch -M main
+
+git push -u origin main
+
+
+⚠️ 替換「替換成你的Repository_URL」為你從步驟 1 複製的 URL
+   例如：https://github.com/grace/cost-analysis-app.git
+
+
+🔵 步驟 3：部署到 Streamlit Cloud
+
+1. 訪問 https://streamlit.io/cloud
+2. 用 GitHub 登入
+3. 點擊 New app
+4. 選擇 Repository: 你的用戶名/cost-analysis-app
+5. Branch: main
+6. File path: app.py
+7. 點擊 Deploy
+8. 等待 2-3 分鐘...
+9. 得到你的 URL！
+
+
+═══════════════════════════════════════════════════════════════════
+
+✅ 完成！
+═══════════════════════════════════════════════════════════════════
+
+你會得到一個 URL，類似：
+  https://cost-analysis-app.streamlit.app
+
+分享此 URL 給員工，他們可以：
+  ✅ 直接打開使用（無需登入）
+  ✅ 上傳 XLSX 檔案
+  ✅ 下載 HTML/PDF
+  ✅ 完成！
+
+
+═══════════════════════════════════════════════════════════════════
+
+❓ 卡住了？
+═══════════════════════════════════════════════════════════════════
+
+查看詳細指南：
+  cat 快速參考卡.txt      ← 最簡潔
+  cat 快速上線.md         ← 5 分鐘指南
+  cat GITHUB_DEPLOYMENT.md ← 完整教程
+
+或執行互動式工具：
+  bash push_to_github.sh
+
+
+═══════════════════════════════════════════════════════════════════
+
+就這樣！30 分鐘內完成！
+
+🎉 你現在有一個免費的、24/7 線上的應用了！
