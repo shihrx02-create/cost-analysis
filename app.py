@@ -12,6 +12,8 @@ PROCESS_TRANSLATIONS = {
     "校車": "Calibration",
     "車床": "Lathe",
     "手工清洗": "Cleaning",
+    "清洗": "Cleaning",
+    "去油": "Remove oil",
     "自動清洗": "Automatic Cleaning",
     "修內徑加工": "Inner Diameter Processing",
     "包裝": "Packing",
@@ -279,7 +281,7 @@ def generate_html(data):
                     <tr><td>加工成本 | Processing Cost</td><td>-</td><td>""" + str(data.get('c_proc_pct', '-')) + """%</td><td>""" + str(data['c_proc_cost']) + """</td></tr>
                     <tr><td>總成本 | Total Cost</td><td>-</td><td>-</td><td>""" + str(data['c_total_cost']) + """</td></tr>
                     <tr class="highlight"><td>單顆成本 | Unit Cost</td><td>-</td><td>-</td><td>""" + str(data['c_unit_cost']) + """</td></tr>
-                    <tr><td>目前售價 | Current Selling Price</td><td>-</td><td>-</td><td>""" + str(data['c_price']) + """</td></tr>
+                    <tr><td>目前售價 | Current Selling Price</td><td>-</td><td>""" + str(data.get('c_price_margin', '-')) + """%</td><td>""" + str(data['c_price']) + """</td></tr>
                 </table>
             </div>
             <div class="section">
@@ -338,12 +340,12 @@ with col2:
     product_model = st.text_input("🏷️ 產品編號 *", placeholder="必填", help="例: 3-041004-032PN-0")
 
 with col3:
-    currency = st.selectbox("💱 幣別 *", ["-- 請選擇 --", "台幣 (TWD)", "美金 (USD)", "歐元 (EUR)", "澳幣 (AUD)", "英鎊 (GBP)"])
+    currency = st.selectbox("💱 幣別 *", ["-- 請選擇 --", "台幣 (NTD)", "美金 (USD)", "歐元 (EUR)", "澳幣 (AUD)", "英鎊 (GBP)"])
 
 with col4:
     # 根據選擇的幣別設定預設匯率
     rate_defaults = {
-        "台幣 (TWD)": 1.0,
+        "台幣 (NTD)": 1.0,
         "美金 (USD)": 32.5,
         "歐元 (EUR)": 35.5,
         "澳幣 (AUD)": 21.5,
