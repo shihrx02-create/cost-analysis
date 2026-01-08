@@ -11,7 +11,7 @@ from io import BytesIO
 PROCESS_TRANSLATIONS = {
     "校車": "Calibration",
     "車床": "Lathe",
-    "手工清洗": "Manual Cleaning",
+    "手工清洗": "Remove oil",
     "清洗": "Remove oil",
     "去油": "Remove oil",
     "自動清洗": "Auto Cleaning",
