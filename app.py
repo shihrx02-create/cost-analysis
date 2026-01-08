@@ -72,6 +72,10 @@ def clean_process_name(name):
         # 如果不在字典裡，自動翻譯
         eng_name = auto_translate(clean_name)
     
+    # 如果英文是 "Remove oil"，中文也改成「去油」
+    if eng_name == "Remove oil":
+        clean_name = "去油"
+    
     return f"{clean_name} | {eng_name}"
 
 def auto_translate(text):
