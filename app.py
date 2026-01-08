@@ -281,7 +281,7 @@ def generate_html(data):
                     <tr><td>加工成本 | Processing Cost</td><td>-</td><td>""" + str(data.get('c_proc_pct', '-')) + """%</td><td>""" + str(data['c_proc_cost']) + """</td></tr>
                     <tr><td>總成本 | Total Cost</td><td>-</td><td>-</td><td>""" + str(data['c_total_cost']) + """</td></tr>
                     <tr class="highlight"><td>單顆成本 | Unit Cost</td><td>-</td><td>-</td><td>""" + str(data['c_unit_cost']) + """</td></tr>
-                    <tr><td>目前售價 | Current Selling Price</td><td>-</td><td>-</td><td>""" + str(data['c_price']) + """ (""" + str(data.get('c_price_margin', '-')) + """%)</td></tr>
+                    <tr><td>目前售價 | Current Selling Price</td><td>-</td><td>-</td><td>""" + str(data['c_price']) + """ (""" + str(data.get('c_margin', '-')) + """%)</td></tr>
                 </table>
             </div>
             <div class="section">
