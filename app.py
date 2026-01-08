@@ -462,7 +462,6 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
         proc_start_row = 16
     
     # 從找到的位置開始提取所有工序
-    seen_processes = set()
     for i in range(proc_start_row, len(df)):
         try:
             # 嘗試從第 1 列和第 2 列讀取工序名稱
@@ -479,11 +478,6 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
                 if i > proc_start_row + 20:  # 至少往下看 20 列
                     break
                 continue
-            
-            # 避免重複
-            if p_name in seen_processes:
-                continue
-            seen_processes.add(p_name)
             
             # 嘗試從不同欄位提取成本
             c_val = "-"
