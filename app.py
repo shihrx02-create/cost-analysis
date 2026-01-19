@@ -280,7 +280,7 @@ def generate_html(data):
             .print-button {
                 position: fixed;
                 top: 20px;
-                right: 20px;
+                right: 180px;
                 background-color: #4CAF50;
                 color: white;
                 padding: 12px 24px;
@@ -290,12 +290,33 @@ def generate_html(data):
                 font-size: 16px;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.2);
                 z-index: 1000;
+                text-decoration: none;
+                display: inline-block;
             }
             .print-button:hover {
                 background-color: #45a049;
             }
+            .download-button {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #2196F3;
+                color: white;
+                padding: 12px 24px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                z-index: 1000;
+                text-decoration: none;
+                display: inline-block;
+            }
+            .download-button:hover {
+                background-color: #0b7dda;
+            }
             @media print {
-                .print-button {
+                .print-button, .download-button {
                     display: none;
                 }
             }
@@ -303,6 +324,22 @@ def generate_html(data):
     </head>
     <body>
         <button class="print-button" onclick="window.print()">🖨️ 列印報表</button>
+        <a class="download-button" download="Analysis_""" + str(data['part_no']) + """.html" href="#" onclick="downloadHTML(); return false;">📄 下載 HTML</a>
+        <script>
+        function downloadHTML() {
+            var element = document.documentElement.cloneNode(true);
+            element.querySelector('.print-button').remove();
+            element.querySelector('.download-button').remove();
+            var htmlContent = element.outerHTML;
+            var blob = new Blob([htmlContent], {type: 'text/html'});
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'Analysis_""" + str(data['part_no']) + """.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        </script>
         <h1>成本分析 | Cost Analysis | """ + str(data['part_no']) + """</h1>
         <div class="container">
             <div class="section">
@@ -589,13 +626,5 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
     
     st.success(f"解析完成！料號：{part_no}")
     
-    # 提供預覽與下載
+    # 提供預覽（按鈕已在HTML中）
     st.components.v1.html(final_html, height=600, scrolling=True)
-    
-    # 下載選項
-    st.download_button(
-        label="📄 下載 HTML",
-        data=final_html,
-        file_name=f"Analysis_{part_no}.html",
-        mime="text/html"
-    )
