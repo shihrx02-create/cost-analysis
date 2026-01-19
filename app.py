@@ -574,9 +574,12 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
     
     with col_download:
         # HTML 下載
-        b64 = base64.b64encode(final_html.encode()).decode()
-        href = f'<a href="data:text/html;base64,{b64}" download="Analysis_{part_no}.html">📄 下載 HTML</a>'
-        st.markdown(href, unsafe_allow_html=True)
+        st.download_button(
+            label="📄 下載 HTML",
+            data=final_html,
+            file_name=f"Analysis_{part_no}.html",
+            mime="text/html"
+        )
     
     with col_print:
         # 列印用 HTML（加入自動列印腳本）
@@ -588,6 +591,10 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
         </script>
         </body>''')
         
-        print_b64 = base64.b64encode(print_html.encode()).decode()
-        print_link = f'<a href="data:text/html;base64,{print_b64}" target="_blank" style="display: inline-block; background-color: #4CAF50; color: white; padding: 8px 16px; border: none; border-radius: 4px; text-decoration: none; font-size: 14px;">🖨️ 列印報表</a>'
-        st.markdown(print_link, unsafe_allow_html=True)
+        st.download_button(
+            label="🖨️ 下載列印版",
+            data=print_html,
+            file_name=f"Print_{part_no}.html",
+            mime="text/html",
+            help="下載後開啟此檔案會自動觸發列印"
+        )
