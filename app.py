@@ -592,32 +592,10 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
     # 提供預覽與下載
     st.components.v1.html(final_html, height=600, scrolling=True)
     
-    # 下載與列印選項
-    col_download, col_print = st.columns(2)
-    
-    with col_download:
-        # HTML 下載
-        st.download_button(
-            label="📄 下載 HTML",
-            data=final_html,
-            file_name=f"Analysis_{part_no}.html",
-            mime="text/html"
-        )
-    
-    with col_print:
-        # 列印用 HTML（加入自動列印腳本）
-        print_html = final_html.replace('</body>', '''
-        <script>
-        window.onload = function() {
-            window.print();
-        }
-        </script>
-        </body>''')
-        
-        st.download_button(
-            label="🖨️ 下載列印版",
-            data=print_html,
-            file_name=f"Print_{part_no}.html",
-            mime="text/html",
-            help="下載後開啟此檔案會自動觸發列印"
-        )
+    # 下載選項
+    st.download_button(
+        label="📄 下載 HTML",
+        data=final_html,
+        file_name=f"Analysis_{part_no}.html",
+        mime="text/html"
+    )
