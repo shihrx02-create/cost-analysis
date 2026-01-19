@@ -569,8 +569,38 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
     # 提供預覽與下載
     st.components.v1.html(final_html, height=600, scrolling=True)
     
-    # 下載選項
-    # HTML 下載
-    b64 = base64.b64encode(final_html.encode()).decode()
-    href = f'<a href="data:text/html;base64,{b64}" download="Analysis_{part_no}.html">📄 下載 HTML</a>'
-    st.markdown(href, unsafe_allow_html=True)
+    # 下載與列印選項
+    col_download, col_print = st.columns(2)
+    
+    with col_download:
+        # HTML 下載
+        b64 = base64.b64encode(final_html.encode()).decode()
+        href = f'<a href="data:text/html;base64,{b64}" download="Analysis_{part_no}.html">📄 下載 HTML</a>'
+        st.markdown(href, unsafe_allow_html=True)
+    
+    with col_print:
+        # 列印按鈕 - 使用 JavaScript 打開新窗口並列印
+        print_html = final_html.replace("'", "\\'").replace("\n", "")
+        print_button = f"""
+        <button onclick="printReport()" style="
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        ">🖨️ 列印報表</button>
+        <script>
+        function printReport() {{
+            var printWindow = window.open('', '_blank');
+            printWindow.document.write('{print_html}');
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(function() {{
+                printWindow.print();
+            }}, 250);
+        }}
+        </script>
+        """
+        st.markdown(print_button, unsafe_allow_html=True)
