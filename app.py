@@ -579,28 +579,28 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
         st.markdown(href, unsafe_allow_html=True)
     
     with col_print:
-        # 列印按鈕 - 使用 JavaScript 打開新窗口並列印
-        print_html = final_html.replace("'", "\\'").replace("\n", "")
+        # 列印按鈕 - 使用 data URI 方式
+        print_b64 = base64.b64encode(final_html.encode()).decode()
         print_button = f"""
-        <button onclick="printReport()" style="
+        <a href="data:text/html;base64,{print_b64}" target="_blank" style="
+            display: inline-block;
             background-color: #4CAF50;
             color: white;
             padding: 8px 16px;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
+            text-decoration: none;
             font-size: 14px;
-        ">🖨️ 列印報表</button>
+            cursor: pointer;
+        ">🖨️ 開啟列印頁面</a>
         <script>
-        function printReport() {{
-            var printWindow = window.open('', '_blank');
-            printWindow.document.write('{print_html}');
-            printWindow.document.close();
-            printWindow.focus();
-            setTimeout(function() {{
-                printWindow.print();
-            }}, 250);
-        }}
+        document.querySelector('a[href^="data:text/html"]').addEventListener('click', function(e) {{
+            e.preventDefault();
+            var win = window.open();
+            win.document.write(atob('{print_b64}'));
+            win.document.close();
+            setTimeout(function() {{ win.print(); }}, 500);
+        }});
         </script>
         """
         st.markdown(print_button, unsafe_allow_html=True)
