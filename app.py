@@ -11,10 +11,10 @@ from io import BytesIO
 PROCESS_TRANSLATIONS = {
     "校車": "Calibration",
     "車床": "Lathe",
-    "手工清洗": "Remove oil",
-    "清洗": "Remove oil",
-    "去油": "Remove oil",
-    "自動清洗": "Auto Cleaning",
+    "手工清洗": "Remove oil by hydrocarbon",
+    "清洗": "Remove oil by hydrocarbon",
+    "去油": "Remove oil by hydrocarbon",
+    "自動清洗": "Remove oil by hydrocarbon",
     "修內徑加工": "Inner Diameter Processing",
     "包裝": "Packing",
     "熱處理": "Heat Treatment",
@@ -64,6 +64,8 @@ def clean_process_name(name):
     # 移除數字後綴(如 風切防鏽3 -> 風切防鏽)
     import re
     clean_name = re.sub(r'\d+$', '', name).strip()
+    # 移除所有空格
+    clean_name = clean_name.replace(" ", "").replace("　", "")
     
     # 先查預設字典
     if clean_name in PROCESS_TRANSLATIONS:
@@ -72,9 +74,10 @@ def clean_process_name(name):
         # 如果不在字典裡，自動翻譯
         eng_name = auto_translate(clean_name)
     
-    # 如果英文是 "Remove oil"，中文也改成「去油」
-    if eng_name == "Remove oil":
-        clean_name = "去油"
+    # 如果是清洗類工序，統一改成「碳氫去油處理」
+    if eng_name == "Remove oil by hydrocarbon" or clean_name in ["手工清洗", "清洗", "去油", "自動清洗"]:
+        clean_name = "碳氫去油處理"
+        eng_name = "Remove oil by hydrocarbon"
     
     return f"{clean_name} | {eng_name}"
 
