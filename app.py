@@ -277,9 +277,32 @@ def generate_html(data):
                 padding-top: 20px;
                 border-top: 1px solid #ddd;
             }
+            .print-button {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #4CAF50;
+                color: white;
+                padding: 12px 24px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                z-index: 1000;
+            }
+            .print-button:hover {
+                background-color: #45a049;
+            }
+            @media print {
+                .print-button {
+                    display: none;
+                }
+            }
         </style>
     </head>
     <body>
+        <button class="print-button" onclick="window.print()">🖨️ 列印報表</button>
         <h1>成本分析 | Cost Analysis | """ + str(data['part_no']) + """</h1>
         <div class="container">
             <div class="section">
@@ -565,34 +588,6 @@ if uploaded_file and product_model.strip() and currency and currency != "-- 請�
     final_html = generate_html(display_data)
     
     st.success(f"解析完成！料號：{part_no}")
-    
-    # 列印按鈕（在預覽上方）
-    if st.button("🖨️ 列印報表", type="primary"):
-        # 建立包含列印功能的 HTML
-        printable_html = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <script>
-                window.print();
-                window.onafterprint = function() {{
-                    window.close();
-                }};
-            </script>
-        </head>
-        <body>
-            {final_html}
-        </body>
-        </html>
-        """
-        st.components.v1.html(f"""
-        <script>
-            var printWindow = window.open('', '_blank');
-            printWindow.document.write(`{printable_html.replace('`', '\\`')}`);
-            printWindow.document.close();
-        </script>
-        """, height=0)
     
     # 提供預覽與下載
     st.components.v1.html(final_html, height=600, scrolling=True)
