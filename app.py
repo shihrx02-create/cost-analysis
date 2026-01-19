@@ -67,8 +67,12 @@ def clean_process_name(name):
     # 移除所有空格
     clean_name = clean_name.replace(" ", "").replace("　", "")
     
+    # 特殊匹配：包含「校車」的都識別為 Calibration
+    if "校車" in clean_name:
+        eng_name = "Calibration"
+        clean_name = clean_name  # 保留原始名稱如「校車A」
     # 先查預設字典
-    if clean_name in PROCESS_TRANSLATIONS:
+    elif clean_name in PROCESS_TRANSLATIONS:
         eng_name = PROCESS_TRANSLATIONS[clean_name]
     else:
         # 如果不在字典裡，自動翻譯
